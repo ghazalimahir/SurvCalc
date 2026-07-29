@@ -53,3 +53,11 @@ v1.12J
 - Input WAKTU menggunakan teks HH:MM untuk mengelakkan offset/pembesaran native Safari iPhone.
 - Saiz teks WAKTU disamakan dengan input sudut pada paparan telefon.
 - Formula dan enjin kiraan tidak diubah.
+
+v1.12K
+- Kolum WAKTU dibesarkan (17% → 22%) sebab kotak type=time Android memaparkan anak panah
+  atas/bawah terbina dalam yang menyempitkan ruang, tidak seperti Safari iPhone.
+- Kolum SASARAN 20% → 18%, Mengufuk/Pugak 31.5%/32.5% → 30% setiap satu untuk mengimbangi
+  (jumlah kekal 100%).
+- Semua pembetulan khusus iPhone (v1.12F–v1.12J) dikekalkan tanpa diubah.
+- Formula dan enjin kiraan tidak diubah.

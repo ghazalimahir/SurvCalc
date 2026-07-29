@@ -17,8 +17,8 @@ input:focus,select:focus{outline:2px solid #2f75b555;border-color:#2f75b5}
 .obs-wrap{width:100%;overflow:visible}
 .obs-table{width:100%;max-width:100%;table-layout:fixed;border-collapse:separate;border-spacing:6px 5px;font-size:.82rem;margin:0}
 .obs-table col.col-target{width:18%}
-.obs-table col.col-time{width:17%}
-.obs-table col.col-angle{width:32.5%}
+.obs-table col.col-time{width:22%}
+.obs-table col.col-angle{width:30%}
 .obs-table th{background:#2f75b5;color:#fff;padding:9px 4px;text-align:center;line-height:1.1;border-right:1px solid #ffffff45}
 .obs-table th:first-child{border-radius:8px 0 0 0}
 .obs-table th:last-child{border-radius:0 8px 0 0;border-right:0}
@@ -55,8 +55,8 @@ footer{text-align:center;padding:22px;color:#657383;font-size:.78rem}
  h2{margin-bottom:10px}
  .obs-table{font-size:.74rem}
  .obs-table col.col-target{width:18%}
- .obs-table col.col-time{width:17%}
- .obs-table col.col-angle{width:32.5%}
+ .obs-table col.col-time{width:22%}
+ .obs-table col.col-angle{width:30%}
  .obs-table th{padding:8px 2px;font-size:.75rem}
  .obs-table th span{font-size:.59rem}
  .obs-table td{padding:2px 0}
@@ -69,8 +69,8 @@ footer{text-align:center;padding:22px;color:#657383;font-size:.78rem}
  main{padding:8px}
  .card{padding:10px}
  .obs-table col.col-target{width:18%}
- .obs-table col.col-time{width:17%}
- .obs-table col.col-angle{width:32.5%}
+ .obs-table col.col-time{width:22%}
+ .obs-table col.col-angle{width:30%}
  .obs-table th{font-size:.7rem}
  .obs-table td.target{font-size:.66rem}
  .obs-table input{font-size:.72rem;padding-left:1px;padding-right:1px}
@@ -104,19 +104,19 @@ footer{text-align:center;padding:22px;color:#657383;font-size:.78rem}
 
   .obs-table th:nth-child(1),
   .obs-table td:nth-child(1) {
-    width: 20% !important;
+    width: 18% !important;
   }
 
   .obs-table th:nth-child(2),
   .obs-table td:nth-child(2) {
-    width: 17% !important;
+    width: 22% !important;
   }
 
   .obs-table th:nth-child(3),
   .obs-table td:nth-child(3),
   .obs-table th:nth-child(4),
   .obs-table td:nth-child(4) {
-    width: 31.5% !important;
+    width: 30% !important;
   }
 
   .obs-table th {
@@ -243,7 +243,7 @@ footer{text-align:center;padding:22px;color:#657383;font-size:.78rem}
 @media (max-width: 600px) {
   .obs-table th.target-head {
     box-sizing: border-box !important;
-    width: 20% !important;
+    width: 18% !important;
     padding: 0 1px !important;
     height: 38px !important;
     font-size: 0.64rem !important;

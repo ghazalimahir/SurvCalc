@@ -110,4 +110,9 @@ ujian regresi sendiri:
   Mobile — Azimut Matahari" terus ke `./sunobs/`.
 - Pautan "← mSurvey" ditambah pada header SunObs untuk kembali ke menu utama.
 - Semua 12 ujian regresi negeri (fixtures rasmi) disahkan LULUS selepas pemasangan.
+- **SunObs dikemas kini ke v1.12K** — lajur "Waktu" dibesarkan (17% → 22%) sebab kotak `type=time`
+  Android papar anak panah atas/bawah terbina dalam yang menyempitkan ruang (iPhone Safari tiada
+  isu ni). Lajur Sasaran dan Mengufuk/Pugak dikecilkan sedikit untuk imbangi (jumlah kekal 100%).
+  Semua pembetulan khusus iPhone (v1.12F–v1.12J) dikekalkan tanpa disentuh; enjin kiraan tidak
+  diubah (disahkan semula lulus ujian regresi selepas perubahan).
 - Cache PWA dinaik taraf kepada `msurvey-v0.4.7`.
