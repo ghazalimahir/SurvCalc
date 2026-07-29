@@ -1,4 +1,4 @@
-# mSurvey PWA v0.4.1 CLEAN
+# mSurvey PWA v0.4.2 CLEAN
 
 Pakej kemas kini bersih untuk GitHub Pages.
 
@@ -56,3 +56,12 @@ pengiraan bebas (kaedah sudut jam) sebelum dilancarkan:
   Formula: `cos(Azimut) = (sin(Deklinasi) − sin(Altitud)×sin(Latitud)) / (cos(Altitud)×cos(Latitud))`.
   Keputusan mentah (0°–180°) diselesaikan mengikut waktu cerapan (Pagi = guna terus, Petang = 360° − Z).
 - Cache PWA dinaik taraf kepada `msurvey-v0.4.1`.
+
+## Tambahan v0.4.2
+Kemas kini UI berdasarkan maklum balas pengguna — dua jadual + medan berasingan digabung jadi
+**satu jadual sahaja** untuk kedua-dua modul trabas "hilang":
+- **Trabas: Hilang 2 Jarak** / **Trabas: Hilang 2 Bearing** — kini satu jadual dinamik sahaja
+  (macam "Ukur Trabas"). Isi semua bearing/jarak seperti biasa; biarkan ruang yang berkaitan pada
+  **2 baris TERAKHIR sahaja** kosong — itu yang dikira sistem. Lebih pendek dan konsisten dengan
+  gaya jadual sedia ada, tiada lagi seksyen medan berasingan di bawah jadual.
+- Cache PWA dinaik taraf kepada `msurvey-v0.4.2`.
