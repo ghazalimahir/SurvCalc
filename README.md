@@ -1,4 +1,4 @@
-# mSurvey PWA v0.4.0 CLEAN
+# mSurvey PWA v0.4.1 CLEAN
 
 Pakej kemas kini bersih untuk GitHub Pages.
 
@@ -46,3 +46,13 @@ dan disahkan dengan data sintetik + AutoCAD sebelum dilancarkan):
   memaparkan **2 kemungkinan penyelesaian** (cerminan geometri) — surveyor pilih mengikut susun
   atur sebenar di lapangan.
 - Cache PWA dinaik taraf kepada `msurvey-v0.4.0`.
+
+## Tambahan v0.4.1
+Modul baharu ditemui daripada semakan senarai program kalkulator Casio FX-602p milik pengguna —
+formula kaedah altitud piawai dalam astronomi kedudukan (bukan reka-reka), disahkan dengan
+pengiraan bebas (kaedah sudut jam) sebelum dilancarkan:
+- **Azimut Matahari (Altitud)** — kira azimut benar (true north) tanpa kompas, daripada altitud
+  matahari yang diukur, latitud tapak, dan deklinasi matahari (daripada almanak/ephemeris).
+  Formula: `cos(Azimut) = (sin(Deklinasi) − sin(Altitud)×sin(Latitud)) / (cos(Altitud)×cos(Latitud))`.
+  Keputusan mentah (0°–180°) diselesaikan mengikut waktu cerapan (Pagi = guna terus, Petang = 360° − Z).
+- Cache PWA dinaik taraf kepada `msurvey-v0.4.1`.
