@@ -1,4 +1,4 @@
-# mSurvey PWA v0.4.4 CLEAN
+# mSurvey PWA v0.4.5 CLEAN
 
 Pakej kemas kini bersih untuk GitHub Pages.
 
@@ -79,3 +79,12 @@ Kemas kini UI berdasarkan maklum balas pengguna — dua jadual + medan berasinga
   perimeter) dah 3dp. Kini konsisten 3dp di seluruh app. Luas (unit²) kekal 4dp sebab bukan ukuran
   jarak linear.
 - Cache PWA dinaik taraf kepada `msurvey-v0.4.4`.
+
+## Tambahan v0.4.5
+Baiki bug UI mudah alih (dilaporkan pengguna) — pada skrin telefon sempit (~375px), jadual
+garisan trabas (Ukur Trabas, Trabas: Hilang 2 Jarak/Bearing) terpotong di luar skrin sebab
+`.traverse-table` dan medan inputnya ada `min-width` dikodkan keras (510px/145px), jadi lajur
+"Jarak" (atau "Bearing") pada baris terakhir tak kelihatan tanpa scroll mengufuk yang tak jelas:
+- Tambah media query (`max-width:520px`) yang kecilkan `min-width` jadual/input dan padding pada
+  skrin sempit supaya semua lajur (No., Bearing, Jarak, butang buang) muat dalam skrin tanpa scroll.
+- Cache PWA dinaik taraf kepada `msurvey-v0.4.5`.

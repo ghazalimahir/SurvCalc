@@ -231,4 +231,4 @@ function calcSunAz(){safe(()=>{
   out(`Sudut Z (mentah) = ${dmsFromDeg(z)}\nAzimut Matahari = ${dmsFromDeg(az)}`)
 })}
 function notReady(){out('Belum diaktifkan — menunggu pengesahan formula asal.')}function clearResult(){out('Sedia.')}function home(){panel.classList.add('hidden');menu.classList.remove('hidden')}
-if('serviceWorker'in navigator)navigator.serviceWorker.register('./sw.js?v=044');let deferred;window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferred=e;installBtn.hidden=false});installBtn.onclick=async()=>{if(deferred){deferred.prompt();await deferred.userChoice;deferred=null;installBtn.hidden=true}};
+if('serviceWorker'in navigator)navigator.serviceWorker.register('./sw.js?v=045');let deferred;window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferred=e;installBtn.hidden=false});installBtn.onclick=async()=>{if(deferred){deferred.prompt();await deferred.userChoice;deferred=null;installBtn.hidden=true}};
