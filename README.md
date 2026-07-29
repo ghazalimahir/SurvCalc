@@ -1,4 +1,4 @@
-# mSurvey PWA v0.3.3 CLEAN
+# mSurvey PWA v0.3.4 CLEAN
 
 Pakej kemas kini bersih untuk GitHub Pages.
 
@@ -27,3 +27,9 @@ daripada bytecode APK asal (kelas P6, P9, P10, P21 dalam classes.dex), bukan tek
 - **Sekan Lebar Sama** — bearing dan jarak titik sekan apabila lebar tikai daripada bearing belakang dan hadapan sama (titik pada pembahagi dua sudut).
 - **Sekan Lebar Beza** — bearing dan jarak titik sekan apabila dua lebar tikai berbeza.
 - **Sudut Dalam** — sudut dalam pada stesen tengah daripada koordinat tiga titik (belakang, tengah, hadapan).
+
+## Tambahan v0.3.4
+Pembetulan berdasarkan maklum balas selepas cuba semua modul di iPhone:
+- **Format bearing dikemas kini** — output bearing/sudut kini dipaparkan `DDD° MM' SS.SS"` (contoh `090° 00' 00.00"`) menggantikan format lama `090.0000.00` yang mengelirukan (dua titik perpuluhan bertindih).
+- **Butang tukar tanda (±)** ditambah pada setiap medan input berangka. Papan kekunci `decimal` di iPhone/Safari tiada kekunci tolak (`-`), jadi koordinat negatif (contoh Timur/Barat, Utara/Selatan) kini boleh dimasukkan dengan menekan butang ± di sebelah medan tanpa perlu menaip tanda tolak terus.
+- Cache PWA dinaik taraf kepada `msurvey-v0.3.4`.
