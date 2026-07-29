@@ -22,7 +22,7 @@ const n=id=>{const v=Number(document.getElementById(id).value);if(!isFinite(v))t
 function shell(title,body,calc){menu.classList.add('hidden');panel.classList.remove('hidden');panel.innerHTML=`<div class="toolbar"><h2>${title}</h2><button class="secondary" onclick="home()">Menu</button></div>${body}<div class="actions"><button onclick="${calc}()">Kira</button><button class="secondary" onclick="clearResult()">Padam keputusan</button></div><div id="result" class="result">Sedia.</div>`}
 function fields(arr){return `<div class="fields">${arr.map(x=>`<label>${x[1]}<span class="signed"><button type="button" class="sign-toggle" onclick="toggleSign('${x[0]}')" aria-label="Tukar tanda +/-">±</button><input id="${x[0]}" inputmode="decimal" placeholder="${x[2]||''}"></span></label>`).join('')}</div>`}
 function toggleSign(id){const el=document.getElementById(id);if(!el)return;const v=el.value.trim();if(v.startsWith('-'))el.value=v.slice(1);else if(v)el.value='-'+v;else el.value='-';el.focus()}
-function openModule(id){if(id==='bgcoord')shell('BG/JK ke Koordinat',fields([['n1','Utara/Northing 1'],['e1','Timur/Easting 1'],['b','Bearing DDD.MMSS','123.4530'],['d','Jarak']]),'calcBgCoord');else if(id==='coordbg')shell('Koordinat ke BG/JK',fields([['n1','Utara 1'],['e1','Timur 1'],['n2','Utara 2'],['e2','Timur 2']]),'calcCoordBg');else if(id==='mid')shell('Titik Tengah',fields([['n1','Utara 1'],['e1','Timur 1'],['n2','Utara 2'],['e2','Timur 2']]),'calcMid');else if(id==='intersection')shell('Titik Persilangan',fields([['x1','Easting A1'],['y1','Northing A1'],['x2','Easting A2'],['y2','Northing A2'],['x3','Easting B1'],['y3','Northing B1'],['x4','Easting B2'],['y4','Northing B2']]),'calcIntersection');else if(id==='circle')shell('Pusat Bulatan',fields([['x1','Easting 1'],['y1','Northing 1'],['x2','Easting 2'],['y2','Northing 2'],['x3','Easting 3'],['y3','Northing 3']]),'calcCircle');else if(id==='level')shell('Ukur Aras',fields([['rl','Aras laras/RL diketahui'],['bs','Pandangan belakang (BS)'],['is','Pandangan tengah/depan (IS/FS)']]),'calcLevel');else if(id==='traverse'){shell('Ukur Trabas',`<p class="help">Masukkan setiap garisan trabas. Gunakan format bearing <b>DDD.MMSS</b>.</p><div class="table-wrap"><table class="traverse-table"><thead><tr><th>No.</th><th>Bearing</th><th>Jarak</th><th></th></tr></thead><tbody id="traverseRows"></tbody></table></div><div class="row-actions"><button type="button" class="secondary" onclick="addTraverseRow()">+ Tambah Garisan</button><button type="button" class="secondary" onclick="resetTraverseRows()">Kosongkan Semua</button></div>`,'calcTraverse');addTraverseRow('073.1330','115.990');addTraverseRow('171.3750','124.575');}else if(id==='area')shell('Koordinat ke Luas','<label>Koordinat (satu titik setiap baris: Easting,Northing)<textarea id="coords" rows="10" placeholder="1000,1000\n1100,1000\n1100,1050\n1000,1050"></textarea></label><br>','calcArea');else if(id==='missing')shell('Hilang 2 Jarak',fields([['b12','Bearing 1-2 DDD.MMSS','073.1330'],['b13','Bearing 1-3 DDD.MMSS'],['b23','Bearing 2-3 DDD.MMSS'],['d23','Jarak 2-3']]),'calcMissing');else if(id==='equal')shell('Sekan Lebar Sama',fields([['bb','Bearing Belakang DDD.MMSS'],['bh','Bearing Hadapan DDD.MMSS'],['lebar','Lebar']]),'calcEqual');else if(id==='unequal')shell('Sekan Lebar Beza',fields([['bb','Bearing Belakang DDD.MMSS'],['bh','Bearing Hadapan DDD.MMSS'],['l1','Lebar 1'],['l2','Lebar 2']]),'calcUnequal');else if(id==='angle')shell('Sudut Dalam','<p class="help">Stesen 2 ialah stesen tengah (tempat sudut dihitung). Stesen 1 = belakang, Stesen 3 = hadapan.</p>'+fields([['n1','Utara Stesen 1 (Belakang)'],['e1','Timur Stesen 1 (Belakang)'],['n2','Utara Stesen 2 (Tengah)'],['e2','Timur Stesen 2 (Tengah)'],['n3','Utara Stesen 3 (Hadapan)'],['e3','Timur Stesen 3 (Hadapan)']]),'calcAngle');else if(id==='travdist'){shell('Trabas: Hilang 2 Jarak',`<p class="help">Untuk trabas <b>tertutup</b> (kembali ke titik mula). Isi bearing <b>semua</b> garisan. Isi jarak semua garisan <b>KECUALI 2 baris TERAKHIR</b> — biarkan ruang Jarak pada 2 baris terakhir <b>kosong</b>, itu yang akan dikira. Format bearing <b>DDD.MMSS</b>.</p><div class="table-wrap"><table class="traverse-table"><thead><tr><th>No.</th><th>Bearing</th><th>Jarak</th><th></th></tr></thead><tbody id="mdRows"></tbody></table></div><div class="row-actions"><button type="button" class="secondary" onclick="addLegRow('mdRows')">+ Tambah Garisan</button><button type="button" class="secondary" onclick="resetLegRows('mdRows',3)">Kosongkan Semua</button></div>`,'calcTravMissingDist');addLegRow('mdRows');addLegRow('mdRows');addLegRow('mdRows');}else if(id==='travbearing'){shell('Trabas: Hilang 2 Bearing',`<p class="help">Untuk trabas <b>tertutup</b> (kembali ke titik mula). Isi jarak <b>semua</b> garisan. Isi bearing semua garisan <b>KECUALI 2 baris TERAKHIR</b> — biarkan ruang Bearing pada 2 baris terakhir <b>kosong</b>, itu yang akan dikira. Format bearing <b>DDD.MMSS</b>. Akan ada 2 kemungkinan penyelesaian — pilih yang sepadan dengan lapangan.</p><div class="table-wrap"><table class="traverse-table"><thead><tr><th>No.</th><th>Bearing</th><th>Jarak</th><th></th></tr></thead><tbody id="mbRows"></tbody></table></div><div class="row-actions"><button type="button" class="secondary" onclick="addLegRow('mbRows')">+ Tambah Garisan</button><button type="button" class="secondary" onclick="resetLegRows('mbRows',3)">Kosongkan Semua</button></div>`,'calcTravMissingBearing');addLegRow('mbRows');addLegRow('mbRows');addLegRow('mbRows');}else if(id==='sunaz')shell('Azimut Matahari (Altitud)',`<p class="help">Kaedah altitud untuk cari azimut benar (true north) tanpa kompas, guna cerapan matahari. Latitud (+utara/−selatan) dan Deklinasi (+utara/−selatan) boleh guna butang ±. Deklinasi matahari didapati daripada almanak/ephemeris pada tarikh &amp; masa cerapan.</p>`+fields([['saL','Latitud Tapak DDD.MMSS'],['saA','Altitud Matahari DDD.MMSS'],['saD','Deklinasi Matahari DDD.MMSS']])+`<div class="fields"><label>Waktu Cerapan<select id="saPM"><option value="0">Pagi (matahari di Timur, sebelum tengahari)</option><option value="1">Petang (matahari di Barat, selepas tengahari)</option></select></label></div>`,'calcSunAz');else shell(modules.find(m=>m[0]===id)?.[1]||'Modul','<p>Formula modul ini belum dapat disahkan sepenuhnya daripada APK asal. Ia sengaja tidak diaktifkan bagi mengelakkan keputusan ukur yang salah.</p>','notReady')}
+function openModule(id){if(id==='bgcoord')shell('BG/JK ke Koordinat',fields([['n1','Utara/Northing 1'],['e1','Timur/Easting 1'],['b','Bearing DDD.MMSS','123.4530'],['d','Jarak']]),'calcBgCoord');else if(id==='coordbg')shell('Koordinat ke BG/JK',fields([['n1','Utara 1'],['e1','Timur 1'],['n2','Utara 2'],['e2','Timur 2']]),'calcCoordBg');else if(id==='mid')shell('Titik Tengah',fields([['n1','Utara 1'],['e1','Timur 1'],['n2','Utara 2'],['e2','Timur 2']]),'calcMid');else if(id==='intersection')shell('Titik Persilangan',fields([['x1','Easting A1'],['y1','Northing A1'],['x2','Easting A2'],['y2','Northing A2'],['x3','Easting B1'],['y3','Northing B1'],['x4','Easting B2'],['y4','Northing B2']]),'calcIntersection');else if(id==='circle')shell('Pusat Bulatan',fields([['x1','Easting 1'],['y1','Northing 1'],['x2','Easting 2'],['y2','Northing 2'],['x3','Easting 3'],['y3','Northing 3']]),'calcCircle');else if(id==='level')shell('Ukur Aras',fields([['rl','Aras laras/RL diketahui'],['bs','Pandangan belakang (BS)'],['is','Pandangan tengah/depan (IS/FS)']]),'calcLevel');else if(id==='traverse'){shell('Ukur Trabas',`<p class="help">Masukkan setiap garisan trabas. Gunakan format bearing <b>DDD.MMSS</b>.</p><div class="table-wrap"><table class="traverse-table"><thead><tr><th>No.</th><th>Bearing</th><th>Jarak</th><th></th></tr></thead><tbody id="traverseRows"></tbody></table></div><div class="row-actions"><button type="button" class="secondary" onclick="addTraverseRow()">+ Tambah Garisan</button><button type="button" class="secondary" onclick="resetTraverseRows()">Kosongkan Semua</button></div>`,'calcTraverse');addTraverseRow('073.1330','115.990');addTraverseRow('171.3750','124.575');}else if(id==='area')shell('Koordinat ke Luas','<label>Koordinat (satu titik setiap baris: Easting,Northing)<textarea id="coords" rows="10" placeholder="1000,1000\n1100,1000\n1100,1050\n1000,1050"></textarea></label><br>','calcArea');else if(id==='missing')shell('Hilang 2 Jarak',fields([['b12','Bearing 1-2 DDD.MMSS','073.1330'],['b13','Bearing 1-3 DDD.MMSS'],['b23','Bearing 2-3 DDD.MMSS'],['d23','Jarak 2-3']]),'calcMissing');else if(id==='equal')shell('Sekan Lebar Sama',fields([['bb','Bearing Belakang DDD.MMSS'],['bh','Bearing Hadapan DDD.MMSS'],['lebar','Lebar']]),'calcEqual');else if(id==='unequal')shell('Sekan Lebar Beza',fields([['bb','Bearing Belakang DDD.MMSS'],['bh','Bearing Hadapan DDD.MMSS'],['l1','Lebar 1'],['l2','Lebar 2']]),'calcUnequal');else if(id==='angle')shell('Sudut Dalam','<p class="help">Stesen 2 ialah stesen tengah (tempat sudut dihitung). Stesen 1 = belakang, Stesen 3 = hadapan.</p>'+fields([['n1','Utara Stesen 1 (Belakang)'],['e1','Timur Stesen 1 (Belakang)'],['n2','Utara Stesen 2 (Tengah)'],['e2','Timur Stesen 2 (Tengah)'],['n3','Utara Stesen 3 (Hadapan)'],['e3','Timur Stesen 3 (Hadapan)']]),'calcAngle');else if(id==='travdist'){shell('Trabas: Hilang 2 Jarak',`<p class="help">Untuk trabas <b>tertutup</b> (kembali ke titik mula). Masukkan bearing &amp; jarak setiap garisan yang <b>diketahui</b>, kemudian isi <b>2 medan bearing di bawah</b> untuk dua garisan TERAKHIR yang jaraknya nak dikira. Format bearing <b>DDD.MMSS</b>.</p><div class="table-wrap"><table class="traverse-table"><thead><tr><th>No.</th><th>Bearing</th><th>Jarak</th><th></th></tr></thead><tbody id="mdKnownRows"></tbody></table></div><div class="row-actions"><button type="button" class="secondary" onclick="addLegRow('mdKnownRows')">+ Tambah Garisan Diketahui</button><button type="button" class="secondary" onclick="resetLegRows('mdKnownRows')">Kosongkan</button></div>`+fields([['mdBLast2','Bearing Garisan Kedua Terakhir DDD.MMSS'],['mdBLast1','Bearing Garisan Terakhir DDD.MMSS']]),'calcTravMissingDist');addLegRow('mdKnownRows');}else if(id==='travbearing'){shell('Trabas: Hilang 2 Bearing',`<p class="help">Untuk trabas <b>tertutup</b> (kembali ke titik mula). Masukkan bearing &amp; jarak setiap garisan yang <b>diketahui</b>, kemudian isi <b>2 medan jarak di bawah</b> untuk dua garisan TERAKHIR yang bearingnya nak dikira. Format bearing <b>DDD.MMSS</b>. Akan ada 2 kemungkinan penyelesaian — pilih yang sepadan dengan lapangan.</p><div class="table-wrap"><table class="traverse-table"><thead><tr><th>No.</th><th>Bearing</th><th>Jarak</th><th></th></tr></thead><tbody id="mbKnownRows"></tbody></table></div><div class="row-actions"><button type="button" class="secondary" onclick="addLegRow('mbKnownRows')">+ Tambah Garisan Diketahui</button><button type="button" class="secondary" onclick="resetLegRows('mbKnownRows')">Kosongkan</button></div>`+fields([['mbDLast2','Jarak Garisan Kedua Terakhir'],['mbDLast1','Jarak Garisan Terakhir']]),'calcTravMissingBearing');addLegRow('mbKnownRows');}else if(id==='sunaz')shell('Azimut Matahari (Altitud)',`<p class="help">Kaedah altitud untuk cari azimut benar (true north) tanpa kompas, guna cerapan matahari. Latitud (+utara/−selatan) dan Deklinasi (+utara/−selatan) boleh guna butang ±. Deklinasi matahari didapati daripada almanak/ephemeris pada tarikh &amp; masa cerapan.</p>`+fields([['saL','Latitud Tapak DDD.MMSS'],['saA','Altitud Matahari DDD.MMSS'],['saD','Deklinasi Matahari DDD.MMSS']])+`<div class="fields"><label>Waktu Cerapan<select id="saPM"><option value="0">Pagi (matahari di Timur, sebelum tengahari)</option><option value="1">Petang (matahari di Barat, selepas tengahari)</option></select></label></div>`,'calcSunAz');else shell(modules.find(m=>m[0]===id)?.[1]||'Modul','<p>Formula modul ini belum dapat disahkan sepenuhnya daripada APK asal. Ia sengaja tidak diaktifkan bagi mengelakkan keputusan ukur yang salah.</p>','notReady')}
 function out(t){document.getElementById('result').textContent=t}function safe(fn){try{fn()}catch(e){out('Ralat: '+e.message)}}
 
 function dmsWholeSecond(v){v=(v%360+360)%360;let total=Math.round(v*3600);total%=1296000;const d=Math.floor(total/3600),m=Math.floor((total%3600)/60),sec=total%60;return `${String(d).padStart(3,'0')}.${String(m).padStart(2,'0')}${String(sec).padStart(2,'0')}`}
@@ -156,59 +156,40 @@ function removeLegRow(bodyId,btn){
   renumberLegRows(bodyId);
 }
 function renumberLegRows(bodyId){document.querySelectorAll('#'+bodyId+' tr').forEach((tr,i)=>tr.querySelector('.row-no').textContent=i+1)}
-function resetLegRows(bodyId,minRows=1){const tbody=document.getElementById(bodyId);if(!tbody)return;tbody.innerHTML='';for(let i=0;i<minRows;i++)addLegRow(bodyId);clearResult()}
-function calcTravMissingDist(){safe(()=>{
-  const rows=[...document.querySelectorAll('#mdRows tr')];
-  if(rows.length<3)throw Error('Masukkan sekurang-kurangnya 3 garisan (1 diketahui + 2 nak dikira)');
-  const legs=rows.map((row,i)=>{
+function resetLegRows(bodyId){const tbody=document.getElementById(bodyId);if(!tbody)return;tbody.innerHTML='';addLegRow(bodyId);clearResult()}
+function readLegRows(bodyId){
+  const rows=[...document.querySelectorAll('#'+bodyId+' tr')];
+  const lines=[];
+  for(const [i,row] of rows.entries()){
     const btxt=row.querySelector('.leg-bearing').value.trim();
     const dtxt=row.querySelector('.leg-distance').value.trim();
-    if(!btxt)throw Error(`Lengkapkan bearing pada garisan ${i+1}`);
-    return {bearing:degFromDms(Number(btxt)),distTxt:dtxt,no:i+1};
-  });
-  const total=legs.length;
+    if(!btxt&&!dtxt)continue;
+    if(!btxt||!dtxt)throw Error(`Lengkapkan bearing dan jarak pada garisan diketahui ${i+1}`);
+    const bearing=degFromDms(Number(btxt));
+    const distance=Number(dtxt);
+    if(!isFinite(distance)||distance<0)throw Error(`Jarak garisan diketahui ${i+1} tidak sah`);
+    lines.push({bearing,distance});
+  }
+  if(lines.length<1)throw Error('Masukkan sekurang-kurangnya satu garisan diketahui');
+  return lines;
+}
+function calcTravMissingDist(){safe(()=>{
+  const lines=readLegRows('mdKnownRows');
   let sx=0,sy=0;
-  for(let i=0;i<total-2;i++){
-    const l=legs[i];
-    if(!l.distTxt)throw Error(`Lengkapkan jarak pada garisan ${l.no} (hanya 2 garisan TERAKHIR yang boleh dibiarkan kosong)`);
-    const d=Number(l.distTxt);
-    if(!isFinite(d)||d<0)throw Error(`Jarak garisan ${l.no} tidak sah`);
-    const rad=l.bearing*Math.PI/180;
-    sx+=d*Math.cos(rad);sy+=d*Math.sin(rad);
-  }
-  for(let i=total-2;i<total;i++){
-    if(legs[i].distTxt)throw Error(`Biarkan ruang Jarak kosong pada garisan ${legs[i].no} (2 garisan terakhir) — nilai ini akan dikira`);
-  }
-  const b1=legs[total-2].bearing*Math.PI/180,b2=legs[total-1].bearing*Math.PI/180;
+  for(const l of lines){const rad=l.bearing*Math.PI/180;sx+=l.distance*Math.cos(rad);sy+=l.distance*Math.sin(rad)}
+  const b1=degFromDms(n('mdBLast2'))*Math.PI/180,b2=degFromDms(n('mdBLast1'))*Math.PI/180;
   const det=Math.sin(b2-b1);
   if(Math.abs(det)<1e-12)throw Error('Dua bearing terakhir tidak boleh selari/sama');
   const dLast2=Math.abs((-sx*Math.sin(b2)+sy*Math.cos(b2))/det);
   const dLast1=Math.abs((sx*Math.sin(b1)-sy*Math.cos(b1))/det);
-  out(`Jarak Garisan ${total-1} = ${dLast2.toFixed(3)}\nJarak Garisan ${total} = ${dLast1.toFixed(3)}`)
+  out(`Jarak Garisan Kedua Terakhir = ${dLast2.toFixed(3)}\nJarak Garisan Terakhir = ${dLast1.toFixed(3)}`)
 })}
 function calcTravMissingBearing(){safe(()=>{
-  const rows=[...document.querySelectorAll('#mbRows tr')];
-  if(rows.length<3)throw Error('Masukkan sekurang-kurangnya 3 garisan (1 diketahui + 2 nak dikira)');
-  const legs=rows.map((row,i)=>{
-    const btxt=row.querySelector('.leg-bearing').value.trim();
-    const dtxt=row.querySelector('.leg-distance').value.trim();
-    if(!dtxt)throw Error(`Lengkapkan jarak pada garisan ${i+1}`);
-    const d=Number(dtxt);
-    if(!isFinite(d)||d<0)throw Error(`Jarak garisan ${i+1} tidak sah`);
-    return {bearingTxt:btxt,dist:d,no:i+1};
-  });
-  const total=legs.length;
+  const lines=readLegRows('mbKnownRows');
   let pn=0,pe=0;
-  for(let i=0;i<total-2;i++){
-    const l=legs[i];
-    if(!l.bearingTxt)throw Error(`Lengkapkan bearing pada garisan ${l.no} (hanya 2 garisan TERAKHIR yang boleh dibiarkan kosong)`);
-    const rad=degFromDms(Number(l.bearingTxt))*Math.PI/180;
-    pn+=l.dist*Math.cos(rad);pe+=l.dist*Math.sin(rad);
-  }
-  for(let i=total-2;i<total;i++){
-    if(legs[i].bearingTxt)throw Error(`Biarkan ruang Bearing kosong pada garisan ${legs[i].no} (2 garisan terakhir) — nilai ini akan dikira`);
-  }
-  const r1=legs[total-2].dist,r2=legs[total-1].dist;
+  for(const l of lines){const rad=l.bearing*Math.PI/180;pn+=l.distance*Math.cos(rad);pe+=l.distance*Math.sin(rad)}
+  const r1=n('mbDLast2'),r2=n('mbDLast1');
+  if(r1<=0||r2<=0)throw Error('Jarak mesti lebih besar daripada 0');
   const dPS=Math.hypot(pn,pe);
   if(dPS<1e-9)throw Error('Titik akhir garisan diketahui bertindih dengan titik mula');
   if(dPS>r1+r2||dPS<Math.abs(r1-r2))throw Error('Trabas tidak boleh ditutup dengan jarak yang diberi — semak semula data');
@@ -216,7 +197,7 @@ function calcTravMissingBearing(){safe(()=>{
   const h=Math.sqrt(Math.max(0,r1*r1-a*a));
   const un=-pn/dPS,ue=-pe/dPS,fn=pn+a*un,fe=pe+a*ue,vn=-ue,ve=un;
   const x1n=fn+h*vn,x1e=fe+h*ve,x2n=fn-h*vn,x2e=fe-h*ve;
-  const solve=(xn,xe)=>{const bpx=(Math.atan2(xe-pe,xn-pn)*180/Math.PI%360+360)%360,bxs=(Math.atan2(-xe,-xn)*180/Math.PI%360+360)%360;return `Bearing Garisan ${total-1} = ${dmsFromDeg(bpx)}\nBearing Garisan ${total} = ${dmsFromDeg(bxs)}`};
+  const solve=(xn,xe)=>{const bpx=(Math.atan2(xe-pe,xn-pn)*180/Math.PI%360+360)%360,bxs=(Math.atan2(-xe,-xn)*180/Math.PI%360+360)%360;return `Bearing Garisan Kedua Terakhir = ${dmsFromDeg(bpx)}\nBearing Garisan Terakhir = ${dmsFromDeg(bxs)}`};
   out(`Penyelesaian 1:\n${solve(x1n,x1e)}\n\nPenyelesaian 2:\n${solve(x2n,x2e)}\n\n(Dua bulatan bersilang pada dua titik — pilih penyelesaian yang sepadan dengan susun atur sebenar di lapangan.)`)
 })}
 function calcSunAz(){safe(()=>{
@@ -231,4 +212,4 @@ function calcSunAz(){safe(()=>{
   out(`Sudut Z (mentah) = ${dmsFromDeg(z)}\nAzimut Matahari = ${dmsFromDeg(az)}`)
 })}
 function notReady(){out('Belum diaktifkan — menunggu pengesahan formula asal.')}function clearResult(){out('Sedia.')}function home(){panel.classList.add('hidden');menu.classList.remove('hidden')}
-if('serviceWorker'in navigator)navigator.serviceWorker.register('./sw.js?v=045');let deferred;window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferred=e;installBtn.hidden=false});installBtn.onclick=async()=>{if(deferred){deferred.prompt();await deferred.userChoice;deferred=null;installBtn.hidden=true}};
+if('serviceWorker'in navigator)navigator.serviceWorker.register('./sw.js?v=046');let deferred;window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferred=e;installBtn.hidden=false});installBtn.onclick=async()=>{if(deferred){deferred.prompt();await deferred.userChoice;deferred=null;installBtn.hidden=true}};

@@ -1,4 +1,4 @@
-# mSurvey PWA v0.4.5 CLEAN
+# mSurvey PWA v0.4.6 CLEAN
 
 Pakej kemas kini bersih untuk GitHub Pages.
 
@@ -88,3 +88,14 @@ garisan trabas (Ukur Trabas, Trabas: Hilang 2 Jarak/Bearing) terpotong di luar s
 - Tambah media query (`max-width:520px`) yang kecilkan `min-width` jadual/input dan padding pada
   skrin sempit supaya semua lajur (No., Bearing, Jarak, butang buang) muat dalam skrin tanpa scroll.
 - Cache PWA dinaik taraf kepada `msurvey-v0.4.5`.
+
+## Tambahan v0.4.6
+Kembali kepada reka bentuk asal untuk kedua-dua modul trabas "hilang" — pengguna terus keliru
+dengan konvensyen "biarkan ruang kosong pada 2 baris terakhir" walaupun ruang input teknikalnya
+ada (v0.4.2). Kini jadual **hanya untuk garisan diketahui** (bearing+jarak penuh setiap baris),
+dan **2 medan berlabel jelas berasingan** di bawah jadual untuk nilai 2 garisan terakhir:
+- **Trabas: Hilang 2 Jarak** — jadual garisan diketahui + medan "Bearing Garisan Kedua Terakhir"
+  dan "Bearing Garisan Terakhir".
+- **Trabas: Hilang 2 Bearing** — jadual garisan diketahui + medan "Jarak Garisan Kedua Terakhir"
+  dan "Jarak Garisan Terakhir".
+- Cache PWA dinaik taraf kepada `msurvey-v0.4.6`.
