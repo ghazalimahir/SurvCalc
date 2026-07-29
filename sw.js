@@ -1,10 +1,10 @@
-const CACHE = 'msurvey-v0.4.3';
+const CACHE = 'msurvey-v0.4.4';
 const FILES = [
   './',
   './index.html',
-  './styles.css?v=043',
-  './app.js?v=043',
-  './manifest.webmanifest?v=043',
+  './styles.css?v=044',
+  './app.js?v=044',
+  './manifest.webmanifest?v=044',
   './icon-192.png',
   './icon-512.png'
 ];

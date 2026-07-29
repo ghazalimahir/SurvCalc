@@ -1,4 +1,4 @@
-# mSurvey PWA v0.4.3 CLEAN
+# mSurvey PWA v0.4.4 CLEAN
 
 Pakej kemas kini bersih untuk GitHub Pages.
 
@@ -72,3 +72,10 @@ Kemas kini UI berdasarkan maklum balas pengguna — dua jadual + medan berasinga
   Berkuat kuasa pada semua output bearing/sudut (Koordinat ke BG/JK, Sekan Lebar Sama/Beza, Sudut
   Dalam, Trabas: Hilang 2 Bearing, Azimut Matahari).
 - Cache PWA dinaik taraf kepada `msurvey-v0.4.3`.
+
+## Tambahan v0.4.4
+- **Semua output jarak/koordinat diselaraskan ke 3 titik perpuluhan (mm terhampir)** — sebelum ini
+  sesetengah (koordinat, jejari, ΔN/ΔE dalam Ukur Trabas) guna 4dp manakala yang lain (jarak,
+  perimeter) dah 3dp. Kini konsisten 3dp di seluruh app. Luas (unit²) kekal 4dp sebab bukan ukuran
+  jarak linear.
+- Cache PWA dinaik taraf kepada `msurvey-v0.4.4`.

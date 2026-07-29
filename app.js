@@ -82,30 +82,30 @@ function calcTraverse(){safe(()=>{
   const perimeter=measuredDistance+linearMisclosure;
   const precision=linearMisclosure>0?measuredDistance/linearMisclosure:Infinity;
 
-  const details=lines.map(l=>`${String(l.no).padStart(2,'0')}  ΔN ${l.dn.toFixed(4).padStart(11)}   ΔE ${l.de.toFixed(4).padStart(11)}`).join('\n');
+  const details=lines.map(l=>`${String(l.no).padStart(2,'0')}  ΔN ${l.dn.toFixed(3).padStart(11)}   ΔE ${l.de.toFixed(3).padStart(11)}`).join('\n');
   out(`${details}
 -----------------------------------
-Jumlah ΔN = ${sumN.toFixed(4)}
-Jumlah ΔE = ${sumE.toFixed(4)}
+Jumlah ΔN = ${sumN.toFixed(3)}
+Jumlah ΔE = ${sumE.toFixed(3)}
 Jumlah jarak garisan = ${measuredDistance.toFixed(3)}
 
 Bearing penutup = ${dmsWholeSecond(az)} (1″ terhampir)
 Jarak penutup = ${linearMisclosure.toFixed(3)}
-ΔN penutup = ${closeN.toFixed(4)}
-ΔE penutup = ${closeE.toFixed(4)}
+ΔN penutup = ${closeN.toFixed(3)}
+ΔE penutup = ${closeE.toFixed(3)}
 
 Tikaian lurus = ${linearMisclosure.toFixed(3)}
 Nisbah tikaian = ${isFinite(precision)?`1 : ${Math.round(precision).toLocaleString('en-US')}`:'Tutup sempurna'}
 Perimeter trabas = ${perimeter.toFixed(3)}
 Keluasan trabas = ${area.toFixed(3)} unit²`)
 })}
-function calcBgCoord(){safe(()=>{const a=degFromDms(n('b'))*Math.PI/180,D=n('d');out(`Northing 2 = ${(n('n1')+D*Math.cos(a)).toFixed(4)}\nEasting 2  = ${(n('e1')+D*Math.sin(a)).toFixed(4)}`)})}
-function calcCoordBg(){safe(()=>{const dn=n('n2')-n('n1'),de=n('e2')-n('e1'),dist=Math.hypot(dn,de),az=Math.atan2(de,dn)*180/Math.PI;out(`Bearing DDD.MMSS = ${dmsFromDeg(az)}\nBearing decimal = ${((az%360+360)%360).toFixed(8)}°\nJarak = ${dist.toFixed(4)}`)})}
-function calcMid(){safe(()=>out(`Northing tengah = ${((n('n1')+n('n2'))/2).toFixed(4)}\nEasting tengah  = ${((n('e1')+n('e2'))/2).toFixed(4)}`))}
-function calcLevel(){safe(()=>{const hi=n('rl')+n('bs');out(`Tinggi kolimatan = ${hi.toFixed(4)}\nAras titik = ${(hi-n('is')).toFixed(4)}`)})}
+function calcBgCoord(){safe(()=>{const a=degFromDms(n('b'))*Math.PI/180,D=n('d');out(`Northing 2 = ${(n('n1')+D*Math.cos(a)).toFixed(3)}\nEasting 2  = ${(n('e1')+D*Math.sin(a)).toFixed(3)}`)})}
+function calcCoordBg(){safe(()=>{const dn=n('n2')-n('n1'),de=n('e2')-n('e1'),dist=Math.hypot(dn,de),az=Math.atan2(de,dn)*180/Math.PI;out(`Bearing DDD.MMSS = ${dmsFromDeg(az)}\nBearing decimal = ${((az%360+360)%360).toFixed(8)}°\nJarak = ${dist.toFixed(3)}`)})}
+function calcMid(){safe(()=>out(`Northing tengah = ${((n('n1')+n('n2'))/2).toFixed(3)}\nEasting tengah  = ${((n('e1')+n('e2'))/2).toFixed(3)}`))}
+function calcLevel(){safe(()=>{const hi=n('rl')+n('bs');out(`Tinggi kolimatan = ${hi.toFixed(3)}\nAras titik = ${(hi-n('is')).toFixed(3)}`)})}
 function calcArea(){safe(()=>{const pts=document.getElementById('coords').value.trim().split(/\n+/).map(l=>l.split(/[ ,;]+/).map(Number));if(pts.length<3||pts.some(p=>p.length<2||p.some(x=>!isFinite(x))))throw Error('Masukkan sekurang-kurangnya 3 titik yang sah');let a=0;pts.forEach((p,i)=>{const q=pts[(i+1)%pts.length];a+=p[0]*q[1]-q[0]*p[1]});out(`Luas = ${Math.abs(a/2).toFixed(4)} unit²\nBilangan titik = ${pts.length}`)})}
-function calcIntersection(){safe(()=>{const x1=n('x1'),y1=n('y1'),x2=n('x2'),y2=n('y2'),x3=n('x3'),y3=n('y3'),x4=n('x4'),y4=n('y4');const den=(x1-x2)*(y3-y4)-(y1-y2)*(x3-x4);if(Math.abs(den)<1e-12)throw Error('Garisan selari atau bertindih');const t=((x1*y2-y1*x2)*(x3-x4)-(x1-x2)*(x3*y4-y3*x4))/den,u=((x1*y2-y1*x2)*(y3-y4)-(y1-y2)*(x3*y4-y3*x4))/den;out(`Easting = ${t.toFixed(4)}\nNorthing = ${u.toFixed(4)}`)})}
-function calcCircle(){safe(()=>{const x1=n('x1'),y1=n('y1'),x2=n('x2'),y2=n('y2'),x3=n('x3'),y3=n('y3');const d=2*(x1*(y2-y3)+x2*(y3-y1)+x3*(y1-y2));if(Math.abs(d)<1e-12)throw Error('Tiga titik segaris');const ux=((x1*x1+y1*y1)*(y2-y3)+(x2*x2+y2*y2)*(y3-y1)+(x3*x3+y3*y3)*(y1-y2))/d;const uy=((x1*x1+y1*y1)*(x3-x2)+(x2*x2+y2*y2)*(x1-x3)+(x3*x3+y3*y3)*(x2-x1))/d;out(`Easting pusat = ${ux.toFixed(4)}\nNorthing pusat = ${uy.toFixed(4)}\nJejari = ${Math.hypot(ux-x1,uy-y1).toFixed(4)}`)})}
+function calcIntersection(){safe(()=>{const x1=n('x1'),y1=n('y1'),x2=n('x2'),y2=n('y2'),x3=n('x3'),y3=n('y3'),x4=n('x4'),y4=n('y4');const den=(x1-x2)*(y3-y4)-(y1-y2)*(x3-x4);if(Math.abs(den)<1e-12)throw Error('Garisan selari atau bertindih');const t=((x1*y2-y1*x2)*(x3-x4)-(x1-x2)*(x3*y4-y3*x4))/den,u=((x1*y2-y1*x2)*(y3-y4)-(y1-y2)*(x3*y4-y3*x4))/den;out(`Easting = ${t.toFixed(3)}\nNorthing = ${u.toFixed(3)}`)})}
+function calcCircle(){safe(()=>{const x1=n('x1'),y1=n('y1'),x2=n('x2'),y2=n('y2'),x3=n('x3'),y3=n('y3');const d=2*(x1*(y2-y3)+x2*(y3-y1)+x3*(y1-y2));if(Math.abs(d)<1e-12)throw Error('Tiga titik segaris');const ux=((x1*x1+y1*y1)*(y2-y3)+(x2*x2+y2*y2)*(y3-y1)+(x3*x3+y3*y3)*(y1-y2))/d;const uy=((x1*x1+y1*y1)*(x3-x2)+(x2*x2+y2*y2)*(x1-x3)+(x3*x3+y3*y3)*(x2-x1))/d;out(`Easting pusat = ${ux.toFixed(3)}\nNorthing pusat = ${uy.toFixed(3)}\nJejari = ${Math.hypot(ux-x1,uy-y1).toFixed(3)}`)})}
 function calcMissing(){safe(()=>{
   const b12=degFromDms(n('b12'))*Math.PI/180,b13=degFromDms(n('b13'))*Math.PI/180,b23=degFromDms(n('b23'))*Math.PI/180,d23=n('d23');
   const denom=Math.sin(b13-b12);
@@ -231,4 +231,4 @@ function calcSunAz(){safe(()=>{
   out(`Sudut Z (mentah) = ${dmsFromDeg(z)}\nAzimut Matahari = ${dmsFromDeg(az)}`)
 })}
 function notReady(){out('Belum diaktifkan — menunggu pengesahan formula asal.')}function clearResult(){out('Sedia.')}function home(){panel.classList.add('hidden');menu.classList.remove('hidden')}
-if('serviceWorker'in navigator)navigator.serviceWorker.register('./sw.js?v=043');let deferred;window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferred=e;installBtn.hidden=false});installBtn.onclick=async()=>{if(deferred){deferred.prompt();await deferred.userChoice;deferred=null;installBtn.hidden=true}};
+if('serviceWorker'in navigator)navigator.serviceWorker.register('./sw.js?v=044');let deferred;window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferred=e;installBtn.hidden=false});installBtn.onclick=async()=>{if(deferred){deferred.prompt();await deferred.userChoice;deferred=null;installBtn.hidden=true}};
