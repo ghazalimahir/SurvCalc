@@ -1,4 +1,4 @@
-# mSurvey PWA v0.4.2 CLEAN
+# mSurvey PWA v0.4.3 CLEAN
 
 Pakej kemas kini bersih untuk GitHub Pages.
 
@@ -65,3 +65,10 @@ Kemas kini UI berdasarkan maklum balas pengguna — dua jadual + medan berasinga
   **2 baris TERAKHIR sahaja** kosong — itu yang dikira sistem. Lebih pendek dan konsisten dengan
   gaya jadual sedia ada, tiada lagi seksyen medan berasingan di bawah jadual.
 - Cache PWA dinaik taraf kepada `msurvey-v0.4.2`.
+
+## Tambahan v0.4.3
+- **Bearing/sudut kini dibundarkan ke saat terhampir** (contoh `057° 59' 41"`) — perpuluhan saat
+  (`.05"`) dibuang atas permintaan pengguna, ketepatan yang berlebihan tidak diperlukan dalam amalan.
+  Berkuat kuasa pada semua output bearing/sudut (Koordinat ke BG/JK, Sekan Lebar Sama/Beza, Sudut
+  Dalam, Trabas: Hilang 2 Bearing, Azimut Matahari).
+- Cache PWA dinaik taraf kepada `msurvey-v0.4.3`.
