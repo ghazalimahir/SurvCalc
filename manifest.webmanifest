@@ -1,6 +1,6 @@
 {
-  "name": "mSurvey",
-  "short_name": "mSurvey",
+  "name": "SurvCalc",
+  "short_name": "SurvCalc",
   "description": "Aplikasi pengiraan ukur",
   "start_url": "./",
   "display": "standalone",

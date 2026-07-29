@@ -1,4 +1,7 @@
-# mSurvey PWA v0.4.7 CLEAN
+# SurvCalc PWA v0.4.8 CLEAN
+
+(Dahulunya dikenali sebagai "mSurvey" — dinamakan semula kepada SurvCalc pada v0.4.8, sepadan
+dengan nama repo GitHub. Logo juga ditukar daripada ikon asal APK kepada logo SurvCalc baharu.)
 
 Pakej kemas kini bersih untuk GitHub Pages.
 
@@ -10,7 +13,7 @@ Pakej kemas kini bersih untuk GitHub Pages.
 - Cache PWA dinaik taraf kepada `msurvey-v0.3.2` dan mengutamakan fail terkini dari rangkaian.
 
 ## Upload ke GitHub
-Upload semua fail yang kelihatan dalam folder ini terus ke root repository `mSurvey`.
+Upload semua fail yang kelihatan dalam folder ini terus ke root repository `SurvCalc`.
 Jangan upload folder luarnya dan jangan upload fail ZIP.
 
 
@@ -108,7 +111,7 @@ ujian regresi sendiri:
 - Dipasang sebagai app bersarang berasingan dalam folder `sunobs/` (bukan diport semula secara
   manual) supaya enjin kiraan yang telah disahkan tidak disentuh langsung — kad menu "SunObs
   Mobile — Azimut Matahari" terus ke `./sunobs/`.
-- Pautan "← mSurvey" ditambah pada header SunObs untuk kembali ke menu utama.
+- Pautan "← SurvCalc" ditambah pada header SunObs untuk kembali ke menu utama.
 - Semua 12 ujian regresi negeri (fixtures rasmi) disahkan LULUS selepas pemasangan.
 - **SunObs dikemas kini ke v1.12K** — lajur "Waktu" dibesarkan (17% → 22%) sebab kotak `type=time`
   Android papar anak panah atas/bawah terbina dalam yang menyempitkan ruang (iPhone Safari tiada
@@ -116,3 +119,13 @@ ujian regresi sendiri:
   Semua pembetulan khusus iPhone (v1.12F–v1.12J) dikekalkan tanpa disentuh; enjin kiraan tidak
   diubah (disahkan semula lulus ujian regresi selepas perubahan).
 - Cache PWA dinaik taraf kepada `msurvey-v0.4.7`.
+
+## Tambahan v0.4.8
+Jenama app ditukar daripada "mSurvey" (masih guna ikon amaran kuning APK asal) kepada **SurvCalc**
+(sepadan nama repo GitHub):
+- **Logo baharu** — bulatan sasaran/crosshair ukur berwarna biru (sepadan tema app `#0b5ea8`),
+  dijana terus (bukan pinjam ikon APK asal), menggantikan `icon-192.png`/`icon-512.png`.
+- Tajuk, header dan footer app ditukar kepada "SurvCalc".
+- `manifest.webmanifest` (`name`/`short_name`) dan cache service worker turut dikemas kini.
+- Pautan kembali dalam SunObs Mobile dikemas kini kepada "← SurvCalc".
+- Cache PWA dinaik taraf kepada `survcalc-v0.4.8`.

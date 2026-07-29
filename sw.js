@@ -1,10 +1,10 @@
-const CACHE = 'msurvey-v0.4.7';
+const CACHE = 'survcalc-v0.4.8';
 const FILES = [
   './',
   './index.html',
-  './styles.css?v=047',
-  './app.js?v=047',
-  './manifest.webmanifest?v=047',
+  './styles.css?v=048',
+  './app.js?v=048',
+  './manifest.webmanifest?v=048',
   './icon-192.png',
   './icon-512.png'
 ];

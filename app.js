@@ -201,4 +201,4 @@ function calcTravMissingBearing(){safe(()=>{
   out(`Penyelesaian 1:\n${solve(x1n,x1e)}\n\nPenyelesaian 2:\n${solve(x2n,x2e)}\n\n(Dua bulatan bersilang pada dua titik — pilih penyelesaian yang sepadan dengan susun atur sebenar di lapangan.)`)
 })}
 function notReady(){out('Belum diaktifkan — menunggu pengesahan formula asal.')}function clearResult(){out('Sedia.')}function home(){panel.classList.add('hidden');menu.classList.remove('hidden')}
-if('serviceWorker'in navigator)navigator.serviceWorker.register('./sw.js?v=047');let deferred;window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferred=e;installBtn.hidden=false});installBtn.onclick=async()=>{if(deferred){deferred.prompt();await deferred.userChoice;deferred=null;installBtn.hidden=true}};
+if('serviceWorker'in navigator)navigator.serviceWorker.register('./sw.js?v=048');let deferred;window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferred=e;installBtn.hidden=false});installBtn.onclick=async()=>{if(deferred){deferred.prompt();await deferred.userChoice;deferred=null;installBtn.hidden=true}};
