@@ -1,4 +1,4 @@
-# mSurvey PWA v0.4.6 CLEAN
+# mSurvey PWA v0.4.7 CLEAN
 
 Pakej kemas kini bersih untuk GitHub Pages.
 
@@ -99,3 +99,15 @@ dan **2 medan berlabel jelas berasingan** di bawah jadual untuk nilai 2 garisan 
 - **Trabas: Hilang 2 Bearing** — jadual garisan diketahui + medan "Jarak Garisan Kedua Terakhir"
   dan "Jarak Garisan Terakhir".
 - Cache PWA dinaik taraf kepada `msurvey-v0.4.6`.
+
+## Tambahan v0.4.7
+Gantikan modul ringkas "Azimut Matahari (Altitud)" dengan **SunObs Mobile v1.12J** — app cerapan
+matahari penuh (kaedah Set 1/Set 2, muka kiri/kanan theodolite, pilihan negeri GDM2000, bearing
+grid TR) yang pengguna sediakan sendiri, enjinnya telah disahkan dengan Excel v2.3D dan ada set
+ujian regresi sendiri:
+- Dipasang sebagai app bersarang berasingan dalam folder `sunobs/` (bukan diport semula secara
+  manual) supaya enjin kiraan yang telah disahkan tidak disentuh langsung — kad menu "SunObs
+  Mobile — Azimut Matahari" terus ke `./sunobs/`.
+- Pautan "← mSurvey" ditambah pada header SunObs untuk kembali ke menu utama.
+- Semua 12 ujian regresi negeri (fixtures rasmi) disahkan LULUS selepas pemasangan.
+- Cache PWA dinaik taraf kepada `msurvey-v0.4.7`.
