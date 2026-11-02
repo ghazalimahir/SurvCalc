@@ -67,6 +67,13 @@ def baca(acad, doc):
     print("  UJIAN 1 - BACA MAKLUMAT")
     print("=" * 58)
 
+    import struct
+    bit = struct.calcsize("P") * 8
+    print("  %-32s : %d-bit" % ("Python", bit))
+    if bit != 64:
+        print("    ^ PERHATIAN: AutoCAD 2022 ialah 64-bit. Python 32-bit")
+        print("      tidak boleh bercakap dengannya. Pasang Python 64-bit.")
+
     maklumat = [
         ("Versi AutoCAD", lambda: acad.Version),
         ("Nama gambar", lambda: doc.Name),
