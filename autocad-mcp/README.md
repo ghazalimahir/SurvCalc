@@ -54,9 +54,30 @@ Selepas langkah 4, anda bercakap dengan Claude macam biasa:
 Sesi Claude di laman web (claude.ai/code) **tidak boleh** guna ini. Ia berjalan
 dalam container Linux di awan dan tiada akses ke mesin anda.
 
+## Letak di mana?
+
+Mana-mana folder pun boleh. Yang penting **keenam-enam fail duduk bersama
+dalam satu folder** — fail `.bat` memanggil `.py` di sebelahnya.
+
+Contoh susunan:
+
+```
+C:\project claude\autocad-mcp\
+        1-PASANG.bat
+        2-UJI.bat
+        3-UJI-LUKIS.bat
+        4-DAFTAR-CLAUDE.bat
+        acad_mcp.py
+        probe_acad.py
+        requirements.txt
+```
+
+Nama folder berruang (seperti `project claude`) tidak menjadi masalah: setiap
+laluan dalam fail `.bat` sudah ditulis dalam tanda petik atau secara relatif.
+
 ## Pindah ke laptop
 
-Tak perlu USB. Ulang arahan yang sama:
+Tak perlu USB. Muat turun ZIP yang sama, atau:
 
 ```bat
 git clone https://github.com/ghazalimahir/SurvCalc.git
@@ -64,7 +85,8 @@ cd SurvCalc
 git checkout claude/pc-reset-issue-n9y76h
 ```
 
-Kemudian masuk folder `autocad-mcp` dan klik `1-PASANG.bat` seperti biasa.
+Kemudian salin folder `autocad-mcp` ke tempat yang anda mahu dan klik
+`1-PASANG.bat` seperti biasa.
 
 ---
 

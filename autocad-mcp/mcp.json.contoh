@@ -2,7 +2,7 @@
   "mcpServers": {
     "autocad": {
       "command": "py",
-      "args": ["-3", "C:\\Users\\NAMA_ANDA\\autocad-mcp\\acad_mcp.py"]
+      "args": ["-3", "C:\\project claude\\autocad-mcp\\acad_mcp.py"]
     }
   }
 }
